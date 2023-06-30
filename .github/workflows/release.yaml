@@ -1,8 +1,9 @@
 name: Publish package to GitHub Packages
 on:
   workflow_dispatch:
-  tags:
-    - v1.*
+  push:
+    tags:
+      - v1.*
 
 jobs:
   build:
