@@ -4,7 +4,7 @@ import { FunctionalComponent, Fragment } from 'preact';
 import { createPortal } from 'preact/compat';
 import { JSXInternal } from 'preact/src/jsx';
 import styles from './Overlay.module.scss';
-import { AnimatePresence, Variants, motion } from 'framer-motion';
+import { AnimatePresence, Variant, Variants, motion } from 'framer-motion';
 
 const defaultVariants: Variants = {
   initial: {
@@ -42,11 +42,22 @@ const defaultVariants: Variants = {
   },
 };
 
+export type OverlayVariants = {
+  initial: Variant;
+  in: Variant;
+  out: Variant;
+}
+
 type OverlayProps =
   JSXInternal.IntrinsicElements['div'] &
-  { visible: Signal<boolean>, show: Signal<boolean>, portal: HTMLDivElement };
+  {
+    visible: Signal<boolean>;
+    show: Signal<boolean>;
+    portal: HTMLDivElement;
+    variations?: OverlayVariants
+  };
 
-export const Overlay: FunctionalComponent<OverlayProps> = ({ children, visible, show, portal, id, className }) => {
+export const Overlay: FunctionalComponent<OverlayProps> = ({ children, visible, show, portal, id, className, variations }) => {
 
   useSignalEffect(() => {
     if (show.value) {
@@ -66,7 +77,7 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({ children, visible, 
           <AnimatePresence>
             { visible.value && <motion.div
               key={id}
-              variants={defaultVariants}
+              variants={variations ?? defaultVariants}
               initial="initial"
               animate="in"
               exit="out"
