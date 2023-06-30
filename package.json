@@ -24,6 +24,7 @@
     "@storybook/preact": "^7.0.24",
     "@storybook/preact-vite": "^7.0.24",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "framer-motion": "^10.12.18",
     "node-sass": "^9.0.0",
     "preact": "^10.15.1",
     "react": "^18.2.0",
