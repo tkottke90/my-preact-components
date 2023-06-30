@@ -1,4 +1,4 @@
-import { Component, FunctionalComponent,  } from 'preact';
+import { FunctionalComponent,  } from 'preact';
 import { JSXInternal } from 'preact/src/jsx';
 
 
