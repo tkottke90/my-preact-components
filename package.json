@@ -4,13 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@preact/signals": "^1.1.4",
+    "@storybook/addon-essentials": "^7.0.24",
+    "@storybook/addon-interactions": "^7.0.24",
+    "@storybook/addon-links": "^7.0.24",
+    "@storybook/blocks": "^7.0.24",
+    "@storybook/preact": "^7.0.24",
+    "@storybook/preact-vite": "^7.0.24",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "preact": "^10.15.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.24",
     "typescript": "^5.1.6"
   }
 }
