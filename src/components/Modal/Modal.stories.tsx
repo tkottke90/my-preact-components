@@ -8,19 +8,26 @@ import { DomUtils } from '../../utils';
 
 type Story = StoryObj<typeof Modal>;
 const meta: Meta<typeof Modal> = {
-  component: Modal
+  component: Modal,
+  argTypes: {
+    direction: {
+      description: 'Prebuilt Enter/Exit animations allowing the modal to slide down or up on entrance',
+      control: { type: 'radio' },
+      options: [ 'top', 'bottom', '' ]
+    }
+  } as any
 }
 
 export default meta;
 
 const portal = DomUtils.getPortalContainer('modals');
 export const Default = {
-  render: () => {
+  render: (...args) => {
     const show = useSignal(false);
 
     return (<Fragment>
       <button onClick={() => show.value = true} >Open Modal</button>
-      <Modal show={show} portal={portal} direction={'bottom'} className="storybook--modal" >
+      <Modal show={show} portal={portal} {...args} className="storybook--modal" >
         <h2>Login</h2>
         <form>
           <div className="formField">
