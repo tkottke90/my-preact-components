@@ -1,3 +1,29 @@
+body {
+  font-family: sans-serif;
+  background-color: #efefef;
+}
+
+button {
+  background-color: hsl(209, 30%, 50%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: #efefefef;
+  cursor: pointer;
+
+  &:hover {
+    filter: saturate(2);
+  }
+}
+
+.formField {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
 // Story Styles
 
 .storybook--overlay-wrapper {
@@ -32,5 +58,21 @@
 
       grid-row: 3;
     }
+  }
+}
+
+.storybook--modal {
+  h2 {
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  footer {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+
+    column-gap: 1rem
+    ;
   }
 }

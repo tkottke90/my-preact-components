@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/preact';
 import { useSignal, useSignalEffect } from '@preact/signals';
 import { Fragment } from 'preact';
-import '../../storybook.scss';
 
 import { Overlay } from './';
 import { DomUtils } from '../../utils';

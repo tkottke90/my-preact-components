@@ -54,16 +54,47 @@ type OverlayProps =
     visible: Signal<boolean>;
     show: Signal<boolean>;
     portal: HTMLDivElement;
-    variations?: OverlayVariants
+    variations?: OverlayVariants,
+    disableScrimClose?: boolean,
+    enableEscapeToClose?: boolean
   };
 
-export const Overlay: FunctionalComponent<OverlayProps> = ({ children, visible, show, portal, id, className, variations }) => {
+export const Overlay: FunctionalComponent<OverlayProps> = ({
+  children,
+  visible,
+  show,
+  portal,
+  id,
+  className,
+  variations,
+  disableScrimClose = false,
+  enableEscapeToClose = true
+}) => {
 
   useSignalEffect(() => {
     if (show.value) {
       visible.value = true;
     }
   })
+
+  // Manage keyboard shortcuts
+  useSignalEffect(() => {
+    const eventName = 'keyup'
+    const escapeToClose = (e: KeyboardEvent) => {
+      if (e.key === `Escape`) {
+        visible.value = false;
+        console.log('escape pressed');
+      }
+    }
+
+    if (enableEscapeToClose) {
+      document.addEventListener(eventName, escapeToClose);
+    }
+
+    return () => {
+      document.removeEventListener(eventName, escapeToClose);
+    }
+  });
 
   if (!show.value) {
     return null;
@@ -73,7 +104,11 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({ children, visible, 
     <Fragment>
       {createPortal(
         <div className={[styles.overlayWrapper, className].join(' ')}>
-          { visible.value && <div className={styles.overlayScrim} onClick={() => visible.value = false}></div> }
+          { visible.value && <div className={styles.overlayScrim} onClick={() => {
+            if (!disableScrimClose) {
+              show.value = false;
+            }
+          }}></div> }
           <AnimatePresence>
             { visible.value && <motion.div
               key={id}

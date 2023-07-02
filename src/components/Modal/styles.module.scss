@@ -1,0 +1,18 @@
+@import "../../mixins.scss";
+
+.modalWrapper {
+  padding: 1rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+.modalCard {
+  background-color: var(--modal-background, #efefef);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  @include elevation(2);
+}
