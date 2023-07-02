@@ -1,7 +1,7 @@
 
 
 .overlayWrapper, .overlayScrim {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -10,6 +10,7 @@
 
 .overlayWrapper {
   z-index: 500;
+  overflow: hidden;
 
   .overlayScrim {
     background-color: hsla(0, 0%, 25%, 0.5);

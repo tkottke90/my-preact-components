@@ -1,0 +1,19 @@
+@import "../../mixins.scss";
+
+.drawerWrapper {
+  display: grid;
+}
+
+.drawerCard {
+  background-color: var(--modal-background, #efefef);
+  
+  height: 100vh;
+  
+  @include elevation(2);
+
+  &[data-dir="bottom"] {
+    height: fit-content;
+
+    width: 100%;
+  }
+}
