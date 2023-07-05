@@ -1,10 +1,11 @@
 import { Signal, useSignalEffect } from '@preact/signals';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import { FunctionalComponent, Fragment } from 'preact';
 import { createPortal } from 'preact/compat';
 import { JSXInternal } from 'preact/src/jsx';
 import styles from './Overlay.module.scss';
 import { AnimatePresence, Variant, Variants, motion } from 'framer-motion';
+
 
 const defaultVariants: Variants = {
   initial: {
@@ -35,7 +36,7 @@ const defaultVariants: Variants = {
       type: 'spring',
       staggerChildren: 0.02,
       staggerDirection: -1,
-      duration: 0.2,
+      duration: 0.3,
       mass: 0.05,
       velocity: 18,
     },
@@ -70,6 +71,8 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({
   disableScrimClose = false,
   enableEscapeToClose = true
 }) => {
+  const [myId] = useState(id ?? crypto.randomUUID());
+
 
   useSignalEffect(() => {
     if (show.value) {
@@ -106,12 +109,12 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({
         <div className={[styles.overlayWrapper, className].join(' ')}>
           { visible.value && <div className={styles.overlayScrim} onClick={() => {
             if (!disableScrimClose) {
-              show.value = false;
+              visible.value = false;
             }
           }}></div> }
           <AnimatePresence>
             { visible.value && <motion.div
-              key={id}
+              key={myId}
               variants={variations ?? defaultVariants}
               initial="initial"
               animate="in"
@@ -125,7 +128,7 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({
               className={styles.contentWrapper}
             >
               {children}
-            </motion.div> }
+            </motion.div>}
           </AnimatePresence>
         </div>
         , portal
