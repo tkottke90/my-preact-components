@@ -3,7 +3,7 @@ import { AnimatePresence, LayoutGroup, Variants, motion } from "framer-motion";
 import { createPortal, forwardRef } from "preact/compat";
 import { useEffect } from "react";
 import styles from "./Snackbar.module.scss";
-import { SnackbarItemProps, SnackbarProps } from "./snackbar.types";
+import { SnackbarItemProps, SnackbarProps as _SnackbarProps } from "./snackbar.types";
 
 type PartialOmit<T, J extends keyof T> = Partial<T> & Omit<T, J> 
 
@@ -30,6 +30,8 @@ const ItemVariants: Variants = {
   },
 };
 
+export type SnackbarProps = SnackbarItemProps;
+
 export function removeItem(id: string) {
   const newList = [...snackbarList.value];
   const itemIndex = newList.findIndex(item => item.uuid === id);
@@ -49,7 +51,7 @@ export function addItem(value: PartialOmit<SnackbarItemProps, 'uuid'>) {
 
 const snackbarList = new Signal<SnackbarItemProps[]>([]);
 
-export function SnackbarList({ portal, autoHideDuration = 5000 }: SnackbarProps) {
+export function SnackbarList({ portal, autoHideDuration = 5000 }: _SnackbarProps) {
   return createPortal(
     <div className={styles.snackbarWrapper}>
       <LayoutGroup>
