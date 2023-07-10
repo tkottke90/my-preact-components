@@ -80,3 +80,17 @@ button {
 .storybook--drawer {
   padding: 0.5rem;
 }
+
+.storybook--snackbar {
+
+  fieldset {
+    display: flex;
+    column-gap: 1rem;
+
+    button {
+      background-color: green;
+      border: none;
+    }
+  }
+  
+}
