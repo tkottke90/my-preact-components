@@ -11,13 +11,8 @@ export type SnackbarItemProps = {
   ttl?: number
 };
 
-export type SnackbarContext = {
-  items: Signal<SnackbarItemProps[]>;
-  addItem: (arr: Signal<SnackbarItemProps[]>, value: SnackbarItemProps) => void;
-  removeItem: (arr: Signal<SnackbarItemProps[]>, key: keyof SnackbarItemProps, value: string) => void
-}
-
 export type SnackbarProps = JSXInternal.IntrinsicElements["div"] & {
   portal: HTMLDivElement;
-  autoHideDuration?: number 
+  autoHideDuration?: number;
+  items: Signal<SnackbarItemProps[]>;
 };

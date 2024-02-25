@@ -2,6 +2,8 @@ import { Meta } from '@storybook/preact';
 import '../../storybook.scss';
 import { DomUtils } from '../../utils';
 import { SnackbarList, addItem } from './';
+import { useSignal } from '@preact/signals';
+import { SnackbarItemProps } from './snackbar.types';
 
 const meta: Meta = {
   component: SnackbarList
@@ -33,6 +35,8 @@ function randomItemSelect(arr: any[]) {
 
 export const Primary = {
   render: () => {
+    const items = useSignal<SnackbarItemProps[]>([]);
+    
     function addNewItem() {
       addItem({ label: randomItemSelect(toastMessage), ttl: -1 })
     }
@@ -58,7 +62,7 @@ export const Primary = {
           <button onClick={addNewItem}>Add Persistent Item</button>
           <button onClick={addWarning}>Add Warning Item</button>
         </fieldset>
-        <SnackbarList portal={portal}/>
+        <SnackbarList portal={portal} items={items} />
       </div>
     )
   }

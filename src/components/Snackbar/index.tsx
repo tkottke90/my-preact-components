@@ -49,9 +49,9 @@ export function addItem(value: PartialOmit<SnackbarItemProps, 'uuid'>) {
   snackbarList.value = [...snackbarList.value, { ...value, uuid }];
 }
 
-const snackbarList = new Signal<SnackbarItemProps[]>([]);
+let snackbarList = new Signal<SnackbarItemProps[]>([]);
 
-export function SnackbarList({ portal, autoHideDuration = 5000 }: _SnackbarProps) {
+export function SnackbarList({ portal, autoHideDuration = 5000, items }: _SnackbarProps) {
   return createPortal(
     <div className={styles.snackbarWrapper}>
       <LayoutGroup>
