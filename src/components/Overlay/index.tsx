@@ -1,5 +1,5 @@
 import { Signal, useSignalEffect } from '@preact/signals';
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 import { FunctionalComponent, Fragment } from 'preact';
 import { createPortal } from 'preact/compat';
 import { JSXInternal } from 'preact/src/jsx';
