@@ -60,6 +60,11 @@ type OverlayProps =
     enableEscapeToClose?: boolean
   };
 
+function getRandomId() {
+  const array = new Uint32Array(10);
+  return crypto.getRandomValues(array);
+}
+
 export const Overlay: FunctionalComponent<OverlayProps> = ({
   children,
   visible,
@@ -71,7 +76,7 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({
   disableScrimClose = false,
   enableEscapeToClose = true
 }) => {
-  const [myId] = useState(id ?? crypto.randomUUID());
+  const [myId] = useState(id ?? getRandomId());
 
 
   useSignalEffect(() => {
