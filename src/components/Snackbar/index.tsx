@@ -4,6 +4,7 @@ import { createPortal, forwardRef } from "preact/compat";
 import { useEffect } from "react";
 import styles from "./Snackbar.module.scss";
 import { SnackbarItemProps, SnackbarProps as _SnackbarProps } from "./snackbar.types";
+import { v4 } from 'uuid';
 
 type PartialOmit<T, J extends keyof T> = Partial<T> & Omit<T, J> 
 
@@ -44,7 +45,7 @@ export function removeItem(id: string) {
 }
 
 export function addItem(value: PartialOmit<SnackbarItemProps, 'uuid'>) {
-  const uuid = value.uuid ?? crypto.randomUUID();
+  const uuid = value.uuid ?? v4();
   
   snackbarList.value = [...snackbarList.value, { ...value, uuid }];
 }
