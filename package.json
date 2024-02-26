@@ -39,6 +39,7 @@
     "@storybook/preact": "7.0.24",
     "@storybook/preact-vite": "7.5.0",
     "@storybook/testing-library": "0.0.14-next.2",
+    "@types/uuid": "^9.0.8",
     "framer-motion": "10.12.18",
     "node-sass": "9.0.0",
     "preact": "10.15.1",
@@ -51,5 +52,8 @@
     "sass": "1.63.6",
     "storybook": "7.5.0",
     "typescript": "5.1.6"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
   }
 }

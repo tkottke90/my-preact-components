@@ -5,7 +5,7 @@ import { createPortal } from 'preact/compat';
 import { JSXInternal } from 'preact/src/jsx';
 import styles from './Overlay.module.scss';
 import { AnimatePresence, Variant, Variants, motion } from 'framer-motion';
-
+import { v4 as uuid } from 'uuid';
 
 const defaultVariants: Variants = {
   initial: {
@@ -60,11 +60,6 @@ type OverlayProps =
     enableEscapeToClose?: boolean
   };
 
-function getRandomId() {
-  const array = new Uint32Array(10);
-  return crypto.getRandomValues(array);
-}
-
 export const Overlay: FunctionalComponent<OverlayProps> = ({
   children,
   visible,
@@ -76,7 +71,7 @@ export const Overlay: FunctionalComponent<OverlayProps> = ({
   disableScrimClose = false,
   enableEscapeToClose = true
 }) => {
-  const [myId] = useState(id ?? getRandomId());
+  const [myId] = useState(id ?? uuid());
 
 
   useSignalEffect(() => {
