@@ -13,8 +13,8 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "create-release": "npm run build && git commit -am 'Run build' && npm version minor && git tag -a \"$(npm run get-version)\" -m \"Release: $(npm run get-version)\"",
-    "get-version": "node -e \"const pkg = require('./package.json');console.log('v' + pkg.version)\"",
+    "create-release": "npm run build && git commit -am 'Run build' && npm version minor && git tag -a $(npm run get-version) -m \"Release: $(npm run get-version)\"",
+    "get-version": "cat ./package.json | jq .version",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "deploy": "npm version minor && git push --follow-tags",
