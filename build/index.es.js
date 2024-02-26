@@ -3230,7 +3230,7 @@ function removeItem(id) {
     snackbarList.value = newList;
 }
 function addItem(value) {
-    const uuid = value.uuid ?? crypto.randomUUID();
+    const uuid = value.uuid ?? v4();
     snackbarList.value = [...snackbarList.value, { ...value, uuid }];
 }
 let snackbarList = new Signal([]);
